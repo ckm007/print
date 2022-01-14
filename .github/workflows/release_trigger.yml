@@ -9,7 +9,7 @@ on:
         default: 'Release Preparation'
       releaseTags:
         description: 'tag to update'
-		required: true
+        required: true
       snapshotTags:
         description: 'tag to be replaced'
         required: true
