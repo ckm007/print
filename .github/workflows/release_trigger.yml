@@ -27,19 +27,19 @@ jobs:
         echo "BRANCH_NAME=$(echo ${{ github.ref }} | sed -e 's,.*/\(.*\),\1,')" >> $GITHUB_ENV
         echo "GPG_TTY=$(tty)" >> $GITHUB_ENV
 
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v2
-        with:
-          find: "github.event.inputs.snapshotTags"
-          replace: "github.event.inputs.releaseTags"
-          include: "**Pom.xml" # Will match all POM.xml files in any nested directory
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@v2
+      with:
+        find: "github.event.inputs.snapshotTags"
+        replace: "github.event.inputs.releaseTags"
+        include: "**Pom.xml" # Will match all POM.xml files in any nested directory
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          commit-message: Updated Pom versions for release changes
-          title: Release changes
-          body: Automated PR for github.event.inputs.releaseTags release.
-          branch: release-branch
-          delete-branch: true
-          base: github.event.inputs.base
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: Updated Pom versions for release changes
+        title: Release changes
+        body: Automated PR for github.event.inputs.releaseTags release.
+        branch: release-branch
+        delete-branch: true
+        base: github.event.inputs.base
