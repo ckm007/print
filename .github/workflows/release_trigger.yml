@@ -29,8 +29,8 @@ jobs:
     - name: Find and Replace
       uses: jacobtomlinson/gha-find-replace@v2
       with:
-        find: "{{github.event.inputs.snapshotTags}}"
-        replace: "{{github.event.inputs.releaseTags}}"
+        find: "${{github.event.inputs.snapshotTags}}"
+        replace: "${{github.event.inputs.releaseTags}}"
         include: "**Pom.xml" # Will match all POM.xml files in any nested directory
 
     - name: Create Pull Request
@@ -41,4 +41,4 @@ jobs:
         body: Automated PR for github.event.inputs.releaseTags release.
         branch: release-branch
         delete-branch: true
-        base: "{{github.event.inputs.base}}"
+        base: ${{github.event.inputs.base}}
