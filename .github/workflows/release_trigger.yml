@@ -33,6 +33,9 @@ jobs:
         replace: "${{ github.event.inputs.releaseTags }}"
         include: "**Pom.xml" # Will match all POM.xml files in any nested directory
 
+    - name: Mannualy changing the pom versions
+      run: find . -type f -name "*pom.xml" -print0 | xargs -0 sed -i "s/${{ github.event.inputs.snapshotTags }}/${{ github.event.inputs.releaseTags }}/g"
+
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
