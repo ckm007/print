@@ -33,6 +33,8 @@ jobs:
     - name: Updating the Release URL in POM 
       run:
           pwd
+          echo 1
+          ls -lrta
           sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' .github/workflows/push_trigger.yml
 
     - name: Create Pull Request
