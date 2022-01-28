@@ -27,6 +27,8 @@ jobs:
 
     - name: Merging ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
       run: |
+           git config user.name "Automerge Bot"
+           git config user.email "automergebot@mosip.io"
            git checkout ${{ github.event.inputs.releaseBranch }}
            echo 1
            git fetch origin ${{ github.event.inputs.mergeBranch }} 
