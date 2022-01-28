@@ -37,7 +37,7 @@ jobs:
           ls -lrta
           cd .github/workflows
           pwd
-          ls-lrta
+          ls -lrta
           sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' push_trigger.yml
 
     - name: Create Pull Request
