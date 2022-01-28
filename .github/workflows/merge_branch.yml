@@ -31,12 +31,12 @@ jobs:
            git config user.email "automergebot@mosip.io"
            git checkout ${{ github.event.inputs.releaseBranch }}
            git fetch origin ${{ github.event.inputs.mergeBranch }} 
+           git branch
            git checkout ${{ github.event.inputs.mergeBranch }} 
            git checkout ${{ github.event.inputs.releaseBranch }}
-           git checkout -b merge-branch
            git merge --allow-unrelated-histories -s ours ${{ github.event.inputs.mergeBranch }}
            git checkout ${{ github.event.inputs.mergeBranch }}
-           git merge merge-branch
+           git merge ${{ github.event.inputs.releaseBranch }}
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
@@ -44,6 +44,6 @@ jobs:
         commit-message: Merging  ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
         title: Merging Changes
         body: Automated PR for release preparation. This is to merge ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
-        branch: merge-branch
+        branch: ${{ github.event.inputs.releaseBranch }}
         delete-branch: true
         base: ${{ github.event.inputs.mergeBranch }}
