@@ -31,7 +31,7 @@ jobs:
            echo 1
            git fetch origin ${{ github.event.inputs.mergeBranch }} 
            git branch
-           git checkout origin/${{ github.event.inputs.mergeBranch }}
+           git checkout ${{ github.event.inputs.mergeBranch }}
            echo 2  
            git checkout ${{ github.event.inputs.releaseBranch }}
            echo 3
