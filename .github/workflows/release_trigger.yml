@@ -35,7 +35,10 @@ jobs:
           pwd
           echo 1
           ls -lrta
-          sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' .github/workflows/push_trigger.yml
+          cd .github/workflows
+          pwd
+          ls-lrta
+          sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' push_trigger.yml
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
