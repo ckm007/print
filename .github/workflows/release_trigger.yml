@@ -31,7 +31,9 @@ jobs:
       run: find . -type f -name "*pom.xml" -print0 | xargs -0 sed -i "s/${{ github.event.inputs.snapshotTags }}/${{ github.event.inputs.releaseTags }}/g"
 
     - name: Updating the Release URL in POM 
-      run: sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' .github/workflows/push_trigger.yml
+      run:
+          pwd
+          sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' .github/workflows/push_trigger.yml
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
