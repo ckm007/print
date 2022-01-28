@@ -35,7 +35,7 @@ jobs:
            echo 2  
            git checkout ${{ github.event.inputs.releaseBranch }}
            echo 3
-           git merge -s ours ${{ github.event.inputs.mergeBranch }}
+           git merge --allow-unrelated-histories -s ours ${{ github.event.inputs.mergeBranch }}
            echo 4
            git checkout ${{ github.event.inputs.mergeBranch }}
            echo 5
