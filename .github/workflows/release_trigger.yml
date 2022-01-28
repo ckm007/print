@@ -39,6 +39,9 @@ jobs:
           pwd
           ls -lrta
           sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' push_trigger.yml
+          git diff
+          git add push_trigger.yml
+          git status
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
