@@ -1,6 +1,6 @@
 package io.mosip.print.model;
 
-import java.util.Map;
+import java.util.ArrayList;
 
 import lombok.Data;
 @Data
@@ -11,7 +11,7 @@ public class Event {
     private String timestamp; //ISO format
     private String dataShareUri; //URL
    
-	private Map<String, Object> data;
+    ArrayList <Object> data = new ArrayList <Object> ();
    
    
     // Getter Methods 

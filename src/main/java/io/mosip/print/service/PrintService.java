@@ -1,21 +1,15 @@
 package io.mosip.print.service;
 
-import io.mosip.print.model.EventModel;
+import java.util.Map;
+
+import io.mosip.print.model.CredentialStatusEvent;
 
 public interface PrintService {
     
-	/**
-	 * Get the card
-	 * 
-	 * 
-	 * @param eventModel
-	 * @return
-	 * @throws Exception
-	 */
-	public byte[] generateCard(EventModel eventModel) throws Exception;
+    /*public String print(Map map){
+        //TODO: implement the logic to print the card here
 
-	// Map<String, byte[]> getDocuments(String credentialSubject, String sign,
-	// String cardType,
-	// boolean isPasswordProtected);
-	
+        return "";
+    }*/
+	public void publishEvent(String topic,CredentialStatusEvent credentialStatusEvent);
 }
