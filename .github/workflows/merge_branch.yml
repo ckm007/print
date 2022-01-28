@@ -28,6 +28,8 @@ jobs:
     - name: Merging ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
       run: |
            git checkout ${{ github.event.inputs.releaseBranch }}
+           git checkout ${{ github.event.inputs.mergeBranch }}
+           git checkout ${{ github.event.inputs.releaseBranch }}
            git merge -s ours ${{ github.event.inputs.mergeBranch }}
            git checkout ${{ github.event.inputs.mergeBranch }}
            git merge ${{ github.event.inputs.releaseBranch }}
