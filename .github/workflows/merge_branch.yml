@@ -29,7 +29,7 @@ jobs:
       run: |
            git checkout ${{ github.event.inputs.releaseBranch }}
            echo 1
-           git checkout ${{ github.event.inputs.mergeBranch }}
+           git checkout origin/${{ github.event.inputs.mergeBranch }}
            echo 2  
            git checkout ${{ github.event.inputs.releaseBranch }}
            echo 3
