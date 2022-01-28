@@ -31,7 +31,7 @@ jobs:
       run: find . -type f -name "*pom.xml" -print0 | xargs -0 sed -i "s/${{ github.event.inputs.snapshotTags }}/${{ github.event.inputs.releaseTags }}/g"
 
     - name: Updating the Release URL in POM 
-      run:
+      run: |
           pwd
           echo 1
           ls -lrta
