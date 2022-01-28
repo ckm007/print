@@ -26,15 +26,12 @@ jobs:
         # Strip git ref prefix from version
         echo "BRANCH_NAME=$(echo ${{ github.ref }} | sed -e 's,.*/\(.*\),\1,')" >> $GITHUB_ENV
         echo "GPG_TTY=$(tty)" >> $GITHUB_ENV
-    - name: Find and Replace
-      uses: jacobtomlinson/gha-find-replace@v2
-      with:
-        find: "${{ github.event.inputs.snapshotTags }}"
-        replace: "${{ github.event.inputs.releaseTags }}"
-        include: "**Pom.xml" # Will match all POM.xml files in any nested directory
 
     - name: Mannualy changing the pom versions
       run: find . -type f -name "*pom.xml" -print0 | xargs -0 sed -i "s/${{ github.event.inputs.snapshotTags }}/${{ github.event.inputs.releaseTags }}/g"
+
+    - name: Updating the Release URL in POM 
+      run: sed -i 's/OSSRH_SNAPSHOT_URL/RELEASE_URL/g' .github/workflows/push_trigger.yml
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
