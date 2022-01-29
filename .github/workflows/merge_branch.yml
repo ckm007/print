@@ -27,17 +27,21 @@ jobs:
 
     - name: Merging ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
       run: |
-           git checkout ${{ github.event.inputs.releaseBranch }}
-           git merge -s ours ${{ github.event.inputs.mergeBranch }}
-           git checkout ${{ github.event.inputs.mergeBranch }}
-           git merge ${{ github.event.inputs.releaseBranch }}
+           git config user.name "Automerge Bot"
+           git config user.email "automergebot@mosip.io"
+           git fetch --all
+		   git checkout ${{ github.event.inputs.releaseBranch }}
+		   git pull origin ${{ github.event.inputs.releaseBranch }}
+           git checkout ${{ github.event.inputs.mergeBranch }} 
+           git reset --hard origin/${{ github.event.inputs.releaseBranch }}
+		   git add --all
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
-        commit-message: Merging  ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
+        commit-message: Updating  ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
         title: Merging Changes
-        body: Automated PR for release preparation. This is to merge ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
-        branch: ${{ github.event.inputs.releaseBranch }}
+        body: Automated PR for release preparation. This is to override ${{ github.event.inputs.releaseBranch }} to ${{ github.event.inputs.mergeBranch }}
+        branch: merge-branch
         delete-branch: true
         base: ${{ github.event.inputs.mergeBranch }}
