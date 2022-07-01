@@ -11,6 +11,11 @@ on:
         required: true
         default: 'v1.2.3'
         type: string
+      body:
+        description: 'Release body message'
+        required: true
+        default: 'Changes in this Release'
+        type: string
 
 jobs:
   build:
@@ -28,8 +33,6 @@ jobs:
           tag_name: ${{ github.event.inputs.tag }}
           release_name: ${{ github.event.inputs.tag }}
           body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+            ${{ github.event.inputs.body }}
           draft: false
           prerelease: false
