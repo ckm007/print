@@ -1,4 +1,4 @@
-name: Automated tagging of repos
+name: Tagging of repos
 
 env:
   tag: v1.2.3
