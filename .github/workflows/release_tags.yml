@@ -16,6 +16,11 @@ on:
         required: true
         default: 'Changes in this Release'
         type: string
+      pre-release:
+        description: 'Pre-release? True/False'
+        required: true
+        default: False
+        type: string
 
 jobs:
   build:
@@ -35,4 +40,4 @@ jobs:
           body: |
             ${{ github.event.inputs.body }}
           draft: false
-          prerelease: false
+          prerelease: ${{fromJSON(github.event.inputs.pre-release)}}
